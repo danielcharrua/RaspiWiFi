@@ -27,9 +27,3 @@ def copy_configs():
 	os.system('echo "@reboot root run-parts /etc/cron.raspiwifi/" >> /etc/crontab')
 	os.system('mv /usr/lib/raspiwifi/reset_device/static_files/raspiwifi.conf /etc/raspiwifi')
 	os.system('touch /etc/raspiwifi/host_mode')
-
-def update_main_config_file(auto_config_choice, ssl_enabled_choice):
-	if auto_config_choice.lower() == "y":
-		os.system('sed -i \'s/auto_config=0/auto_config=1/\' /etc/raspiwifi/raspiwifi.conf')
-	if ssl_enabled_choice.lower() == "y":
-		os.system('sed -i \'s/ssl_enabled=0/ssl_enabled=1/\' /etc/raspiwifi/raspiwifi.conf')

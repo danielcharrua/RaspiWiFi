@@ -2,43 +2,18 @@ import os
 import sys
 import setup_lib
 
-
 if os.getuid():
     sys.exit('You need root access to install!')
 
-
 print()
 print()
-print("####################################")
-print("##### RaspiWiFi Initial Setup  #####")
-print("####################################")
+print("#################################")
+print("##### Installing RaspiWiFi  #####")
+print("#################################")
 print()
 print()
-auto_config_choice = input("Would you like to enable \nauto-reconfiguration mode [y/N]?: ")
-print()
-ssl_enabled_choice = input("Would you like to enable SSL during configuration mode \n(NOTICE: you will get a certificate ID error \nwhen connecting, but traffic will be encrypted) [y/N]?: ")
-print()
-print()
-install_ans = input("Are you ready to commit changes to the system? [y/N]: ")
-
-if(install_ans.lower() == 'y'):
-	setup_lib.install_prereqs()
-	setup_lib.copy_configs()
-	setup_lib.update_main_config_file(auto_config_choice, ssl_enabled_choice)
-else:
-	print()
-	print()
-	print("===================================================")
-	print("---------------------------------------------------")
-	print()
-	print("RaspiWiFi installation cancelled. Nothing changed...")
-	print()
-	print("---------------------------------------------------")
-	print("===================================================")
-	print()
-	print()
-	sys.exit()
-
+setup_lib.install_prereqs()
+setup_lib.copy_configs()
 print()
 print()
 print("#####################################")
