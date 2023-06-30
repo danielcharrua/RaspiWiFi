@@ -40,7 +40,7 @@ def wpa_check_activate(wpa_enabled, wpa_key):
 
 	return reboot_required
 
-def update_ssid(ssid_prefix, serial_last_four):
+def update_ssid(ssid_prefix):
 	reboot_required = False
 	ssid_correct = False
 
@@ -54,7 +54,7 @@ def update_ssid(ssid_prefix, serial_last_four):
 			for line in file:
 				if 'ssid=' in line:
 					line_array = line.split('=')
-					line_array[1] = ssid_prefix + ' ' + serial_last_four
+					line_array[1] = ssid_prefix
 					print(line_array[0] + '=' + line_array[1])
 				else:
 					print(line, end = '')
