@@ -38,10 +38,6 @@ def wpa_check_activate(wpa_enabled, wpa_key):
 				else:
 					print(line, end = '')
 
-	if wpa_enabled == '0' and wpa_active == True:
-		reboot_required = True
-		os.system('cp /usr/lib/raspiwifi/reset_device/static_files/hostapd.conf.nowpa /etc/hostapd/hostapd.conf')
-
 	return reboot_required
 
 def update_ssid(ssid_prefix, serial_last_four):
