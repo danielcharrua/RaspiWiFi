@@ -148,4 +148,4 @@ def config_file_hash():
 
 if __name__ == '__main__':
     config_hash = config_file_hash()
-    app.run(host = '0.0.0.0', port = int(config_hash['server_port']), ssl_context='adhoc')
+    app.run(host = '0.0.0.0', port = 443, ssl_context='adhoc')
