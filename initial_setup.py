@@ -7,7 +7,6 @@ if os.getuid():
     sys.exit('You need root access to install!')
 
 
-os.system('clear')
 print()
 print()
 print("####################################")
@@ -18,7 +17,6 @@ print()
 auto_config_choice = input("Would you like to enable \nauto-reconfiguration mode [y/N]?: ")
 print()
 ssl_enabled_choice = input("Would you like to enable SSL during configuration mode \n(NOTICE: you will get a certificate ID error \nwhen connecting, but traffic will be encrypted) [y/N]?: ")
-os.system('clear')
 print()
 print()
 install_ans = input("Are you ready to commit changes to the system? [y/N]: ")
@@ -41,7 +39,6 @@ else:
 	print()
 	sys.exit()
 
-os.system('clear')
 print()
 print()
 print("#####################################")
