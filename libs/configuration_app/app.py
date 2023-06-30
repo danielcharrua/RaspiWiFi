@@ -84,6 +84,7 @@ def scan_wifi_networks():
 
     return ap_array
 
+
 def create_wpa_supplicant(ssid, wifi_key):
     temp_conf_file = open('wpa_supplicant.conf.tmp', 'w')
 
@@ -105,6 +106,7 @@ def create_wpa_supplicant(ssid, wifi_key):
 
     os.system('mv wpa_supplicant.conf.tmp /etc/wpa_supplicant/wpa_supplicant.conf')
 
+
 def set_ap_client_mode():
     os.system('rm -f /etc/raspiwifi/host_mode')
     os.system('rm /etc/cron.raspiwifi/aphost_bootstrapper')
@@ -113,6 +115,7 @@ def set_ap_client_mode():
     os.system('mv /etc/dnsmasq.conf.original /etc/dnsmasq.conf')
     os.system('mv /etc/dhcpcd.conf.original /etc/dhcpcd.conf')
     os.system('reboot')
+
 
 def update_wpa(wpa_enabled, wpa_key):
     with fileinput.FileInput('/etc/raspiwifi/raspiwifi.conf', inplace=True) as raspiwifi_conf:
@@ -145,8 +148,4 @@ def config_file_hash():
 
 if __name__ == '__main__':
     config_hash = config_file_hash()
-
-    if config_hash['ssl_enabled'] == "1":
-        app.run(host = '0.0.0.0', port = int(config_hash['server_port']), ssl_context='adhoc')
-    else:
-        app.run(host = '0.0.0.0', port = int(config_hash['server_port']))
+    app.run(host = '0.0.0.0', port = int(config_hash['server_port']), ssl_context='adhoc')
