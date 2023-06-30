@@ -45,7 +45,7 @@ All of these variables can be set at any time after the Initial Setup has been r
 
 - Connect to the **RaspiWiFi[xxxx] Setup** access point using any other WiFi enabled device.
 
-- Navigate to `[10.0.0.1]`, `[raspiwifisetup.com]`, or `[idliketoconfigurethewifionthisdevicenowplease.com]` (I was debating whether this was funny or not and, yes, it was) using any web browser on the device you connected with. (don't forget to manually start with `[https://]` when using SSL mode)
+- Navigate to `[10.0.0.1]` or to `[raspiwifisetup.com]` using any web browser on the device you connected with. (don't forget to manually start with `[https://]` when using SSL mode)
 
 - Select the WiFi connection you'd like your Raspberry Pi to connect to from the drop down list and enter its wireless password on the page provided. If no encryption is enabled, leave the password box blank. You may also manually specify your network information by clicking on the "manual SSID entry ->" link.
 
