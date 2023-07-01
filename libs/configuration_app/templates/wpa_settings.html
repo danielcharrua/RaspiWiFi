@@ -2,13 +2,11 @@
 
 {% block body %}
   <div id="mainContent">
-    <h1>WPA for Configuration Mode</h1>
-    <div class="wifiIcon"></div>
+    <h1>AP Password</h1>
 
     <div id="wpaCredentialsForm">
       <form action="{{ url_for('save_wpa_credentials') }}" method=post>
         <ul>
-          <li><label for="wpa_key">WPA Key:</label></li>
           <li><input type="text" name="wpa_key" value={{wpa_key}} class="wifiNetworkInputs"></li>
           <input type="submit" class="wifiConnectButton">
         </ul>

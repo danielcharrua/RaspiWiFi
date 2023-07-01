@@ -148,23 +148,6 @@ div#saveCredentialsOutput{
   font-size: 2em;
 }
 
-/* Wifi Icon
----------------------------------------------------------*/
-
-.wifiIcon {
-    padding: 10px;
-}
-.wifiIcon, .wifiIcon:before {
-    display: inline-block;
-    border: 40px double transparent;
-    border-top-color: currentColor;
-    border-radius: 50%;
-}
-.wifiIcon:before {
-    content: '';
-    width: 0; height: 0;
-}
-
 /* Desktop
 ---------------------------------------------------------*/
 
