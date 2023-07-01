@@ -30,7 +30,7 @@ if (uninstall_answer.lower() == "y"):
     
     print()
     print()
-    reboot_answer = input('Uninstallation is complete. Would you like to reboot the system now?: ')
+    reboot_answer = input('Uninstallation is complete. Would you like to reboot the system now? [y/N]: ')
 
     if(reboot_answer.lower() == "y"):
         os.system('reboot')
