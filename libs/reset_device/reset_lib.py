@@ -38,6 +38,30 @@ def update_ssid(newtok_ssid):
 	return reboot_required
 
 
+def update_wpa_password(wpa_key):
+	reboot_required = False
+	password_exists = False
+
+	with open('/etc/hostapd/hostapd.conf') as hostapd_conf:
+		for line in hostapd_conf:
+			if wpa_key in line:
+				password_exists = True
+
+	if password_exists == False:
+		with fileinput.FileInput("/etc/hostapd/hostapd.conf", inplace=True) as file:
+			for line in file:
+				if 'wpa_passphrase=' in line:
+					line_array = line.split('=')
+					line_array[1] = wpa_key
+					print(line_array[0] + '=' + line_array[1])
+				else:
+					print(line, end = '')
+
+		reboot_required = True
+			
+	return reboot_required
+
+
 def is_wifi_active():
 	iwconfig_out = subprocess.check_output(['iwconfig']).decode('utf-8')
 	wifi_active = True
