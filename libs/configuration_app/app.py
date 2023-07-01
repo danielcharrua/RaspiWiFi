@@ -24,7 +24,7 @@ def manual_ssid_entry():
 @app.route('/wpa_settings')
 def wpa_settings():
     config_hash = config_file_hash()
-    return render_template('wpa_settings.html', wpa_enabled = config_hash['wpa_enabled'], wpa_key = config_hash['wpa_key'])
+    return render_template('wpa_settings.html', wpa_key = config_hash['wpa_key'])
 
 
 @app.route('/save_credentials', methods = ['GET', 'POST'])
@@ -48,14 +48,10 @@ def save_credentials():
 @app.route('/save_wpa_credentials', methods = ['GET', 'POST'])
 def save_wpa_credentials():
     config_hash = config_file_hash()
-    wpa_enabled = request.form.get('wpa_enabled')
     wpa_key = request.form['wpa_key']
 
-    if str(wpa_enabled) == '1':
-        update_wpa(1, wpa_key)
-    else:
-        update_wpa(0, wpa_key)
-
+    update_wpa(wpa_key)
+   
     def sleep_and_reboot_for_wpa():
         time.sleep(2)
         os.system('reboot')
@@ -64,7 +60,7 @@ def save_wpa_credentials():
     t.start()
 
     config_hash = config_file_hash()
-    return render_template('save_wpa_credentials.html', wpa_enabled = config_hash['wpa_enabled'], wpa_key = config_hash['wpa_key'])
+    return render_template('save_wpa_credentials.html', wpa_key = config_hash['wpa_key'])
 
 
 
@@ -117,20 +113,16 @@ def set_ap_client_mode():
     os.system('reboot')
 
 
-def update_wpa(wpa_enabled, wpa_key):
+def update_wpa(wpa_key):
     with fileinput.FileInput('/etc/raspiwifi/raspiwifi.conf', inplace=True) as raspiwifi_conf:
         for line in raspiwifi_conf:
-            if 'wpa_enabled=' in line:
-                line_array = line.split('=')
-                line_array[1] = wpa_enabled
-                print(line_array[0] + '=' + str(line_array[1]))
 
             if 'wpa_key=' in line:
                 line_array = line.split('=')
                 line_array[1] = wpa_key
                 print(line_array[0] + '=' + line_array[1])
 
-            if 'wpa_enabled=' not in line and 'wpa_key=' not in line:
+            if 'wpa_key=' not in line:
                 print(line, end='')
 
 

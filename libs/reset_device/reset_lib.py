@@ -13,32 +13,6 @@ def config_file_hash():
 
 	return config_hash
 
-def wpa_check_activate(wpa_enabled, wpa_key):
-	wpa_active = False
-	reboot_required = False
-
-	with open('/etc/hostapd/hostapd.conf') as hostapd_conf:
-		for line in hostapd_conf:
-			if 'wpa_passphrase' in line:
-				wpa_active = True
-
-	if wpa_enabled == '1' and wpa_active == False:
-		reboot_required = True
-		os.system('cp /usr/lib/raspiwifi/reset_device/static_files/hostapd.conf /etc/hostapd/hostapd.conf')
-
-	if wpa_enabled == '1':
-		with fileinput.FileInput('/etc/hostapd/hostapd.conf', inplace=True) as hostapd_conf:
-			for line in hostapd_conf:
-				if 'wpa_passphrase' in line:
-					if 'wpa_passphrase=' + wpa_key not in line:
-						print('wpa_passphrase=' + wpa_key)
-						os.system('reboot')
-					else:
-						print(line, end = '')
-				else:
-					print(line, end = '')
-
-	return reboot_required
 
 def update_ssid(ssid_prefix):
 	reboot_required = False
@@ -63,6 +37,7 @@ def update_ssid(ssid_prefix):
 			
 	return reboot_required
 
+
 def is_wifi_active():
 	iwconfig_out = subprocess.check_output(['iwconfig']).decode('utf-8')
 	wifi_active = True
@@ -72,9 +47,9 @@ def is_wifi_active():
 
 	return wifi_active
 
+
 def reset_to_host_mode():
 	if not os.path.isfile('/etc/raspiwifi/host_mode'):
-		os.system('aplay /usr/lib/raspiwifi/reset_device/button_chime.wav')
 		os.system('rm -f /etc/wpa_supplicant/wpa_supplicant.conf')
 		os.system('rm -f /home/pi/Projects/RaspiWifi/tmp/*')
 		os.system('rm /etc/cron.raspiwifi/apclient_bootstrapper')

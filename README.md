@@ -28,7 +28,6 @@ After installation the configuration file can be found at `/etc/raspiwifi/raspiw
 ssid_prefix=LightningATM Setup
 auto_config=1
 auto_config_delay=60
-wpa_enabled=1
 wpa_key=password
 ```
 
