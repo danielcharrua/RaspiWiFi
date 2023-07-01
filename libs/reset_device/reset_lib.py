@@ -14,13 +14,13 @@ def config_file_hash():
 	return config_hash
 
 
-def update_ssid(ssid_prefix):
+def update_ssid(newtok_ssid):
 	reboot_required = False
 	ssid_correct = False
 
 	with open('/etc/hostapd/hostapd.conf') as hostapd_conf:
 		for line in hostapd_conf:
-			if ssid_prefix in line:
+			if newtok_ssid in line:
 				ssid_correct = True
 
 	if ssid_correct == False:
@@ -28,7 +28,7 @@ def update_ssid(ssid_prefix):
 			for line in file:
 				if 'ssid=' in line:
 					line_array = line.split('=')
-					line_array[1] = ssid_prefix
+					line_array[1] = newtok_ssid
 					print(line_array[0] + '=' + line_array[1])
 				else:
 					print(line, end = '')

@@ -25,7 +25,7 @@ The original RaspiWiFi directory that you ran the Initial Setup is no longer nee
 After installation the configuration file can be found at `/etc/raspiwifi/raspiwifi.conf`
 
 ```
-ssid_prefix=LightningATM Setup
+newtok_ssid=LightningATM Setup
 auto_config=1
 auto_config_delay=60
 wpa_key=password
